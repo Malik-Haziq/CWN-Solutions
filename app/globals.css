@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #F7F8F8;
+    color: #0D1414;
+    font-family: var(--font-inter), sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* Ensure minimum input font size to prevent iOS zoom */
+  input, textarea, select {
+    font-size: 16px;
+  }
+
+  /* Custom text selection color */
+  ::selection {
+    background-color: rgba(62, 183, 187, 0.18);
+    color: #0D1414;
+  }
+
+  /* Visible keyboard focus for accessibility */
+  :focus-visible {
+    outline: 2px solid #3eb7bb;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+
+  /* Section divider: thin horizontal rule with a teal dot at each end */
+  .section-divider {
+    position: relative;
+    width: 100%;
+    height: 1px;
+    background-color: #E8EDED;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #3eb7bb;
+    flex-shrink: 0;
+  }
+
+  /* Eyebrow / section label style */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #3eb7bb;
+    font-weight: 500;
+  }
+
+  /* Ghost button style */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: 1px solid #CDD6D6;
+    color: #0D1414;
+    font-family: var(--font-inter);
+    font-size: 14px;
+    font-weight: 500;
+    background: transparent;
+    border-radius: 0;
+    transition: border-color 0.2s ease, color 0.2s ease,
+                background-color 0.2s ease;
+    cursor: pointer;
+  }
+  .btn-ghost:hover {
+    border-color: #3eb7bb;
+    color: #3eb7bb;
+  }
+
+  /* Filled primary button */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 26px;
+    background-color: #0D1414;
+    color: #F7F8F8;
+    font-family: var(--font-inter);
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #0D1414;
+    border-radius: 0;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    background-color: #3eb7bb;
+    border-color: #3eb7bb;
+  }
+
+  /* Accent text link with animated underline */
+  .link-accent {
+    color: #3eb7bb;
+    font-weight: 500;
+    text-decoration: none;
+    background-image: linear-gradient(#3eb7bb, #3eb7bb);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    transition: background-size 0.25s ease;
+  }
+  .link-accent:hover {
+    background-size: 100% 1px;
+  }
+
+  /* Small mono badge / tag */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border: 1px solid #CDD6D6;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: #4A5E5E;
+    letter-spacing: 0.04em;
+    background: transparent;
+    border-radius: 0;
+  }
+  .badge-accent {
+    border-color: rgba(62, 183, 187, 0.4);
+    color: #2E9196;
+    background-color: #EDF9F9;
+  }
+
+}
+
+.metrics-ticker {
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 48px,
+    #000 calc(100% - 48px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 48px,
+    #000 calc(100% - 48px),
+    transparent 100%
+  );
+}
+
+.metrics-ticker-track {
+  animation: metrics-ticker-scroll 40s linear infinite;
+}
+
+@keyframes metrics-ticker-scroll {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metrics-ticker-track {
+    animation: none;
+    transform: translateX(0);
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display), sans-serif; }
+  .font-mono    { font-family: var(--font-mono), monospace; }
+  .font-body    { font-family: var(--font-inter), sans-serif; }
+}

@@ -10,16 +10,21 @@ export type BreadcrumbItem = {
 type PageShellProps = {
   breadcrumbs: BreadcrumbItem[];
   children: ReactNode;
+  footerCta?: ReactNode | false;
 };
 
-export function PageShell({ breadcrumbs, children }: PageShellProps) {
+export function PageShell({
+  breadcrumbs,
+  children,
+  footerCta,
+}: PageShellProps) {
   return (
     <div className="bg-bg-base">
       <div className="mx-auto w-full max-w-7xl px-5 pt-10 sm:px-8 sm:pt-12 lg:px-10">
         <Breadcrumbs items={breadcrumbs} />
       </div>
       <div className="pt-10 sm:pt-14">{children}</div>
-      <FooterCallToAction />
+      {footerCta === false ? null : (footerCta ?? <FooterCallToAction />)}
     </div>
   );
 }

@@ -19,7 +19,11 @@ export function ProcessSection({ enabled }: { enabled: boolean }) {
   });
 
   return (
-    <section id="process" className="bg-bg-ink text-text-inverse">
+    <section
+      id="process"
+      data-nav-theme="dark"
+      className="bg-bg-ink text-text-inverse"
+    >
       <div className="mx-auto w-full max-w-7xl px-5 py-section-md sm:px-8 lg:px-10">
         <div className="max-w-2xl">
           <SectionLabel>Process</SectionLabel>

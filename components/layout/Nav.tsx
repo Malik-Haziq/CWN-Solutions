@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { useState } from "react";
 import { TealDot } from "@/components/ui/TealDot";
 import { useScrolled } from "@/hooks/useScrolled";
+import { useNavTheme } from "@/hooks/useNavTheme";
 
 const navLinks = [
   { label: "Services", href: "/services", anchor: "#services" },
@@ -23,6 +24,7 @@ function getNavHref(pathname: string, href: string, anchor: string) {
 export function Nav() {
   const pathname = usePathname();
   const isScrolled = useScrolled(80);
+  const isDarkSection = useNavTheme(pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const closeMenu = () => setIsMenuOpen(false);
@@ -32,9 +34,11 @@ export function Nav() {
       <header
         className={clsx(
           "fixed inset-x-0 top-0 z-50 h-20 border-b transition-[background-color,border-color] duration-200 ease-in-out",
-          isScrolled
-            ? "border-border-subtle bg-bg-surface"
-            : "border-transparent bg-transparent",
+          isDarkSection
+            ? "border-white/10 bg-bg-ink"
+            : isScrolled
+              ? "border-border-subtle bg-bg-surface"
+              : "border-transparent bg-transparent",
         )}
       >
         <nav
@@ -45,7 +49,10 @@ export function Nav() {
             <Link
               href="/"
               aria-label="CWN Solutions home"
-              className="inline-flex items-baseline gap-1 font-display text-xl font-semibold text-text-primary transition-colors duration-200"
+              className={clsx(
+                "inline-flex items-baseline gap-1 font-display text-xl font-semibold transition-colors duration-200",
+                isDarkSection ? "text-text-inverse" : "text-text-primary",
+              )}
             >
               <span>CWN Solutions</span>
               <TealDot className="translate-y-[-1px]" />
@@ -57,7 +64,12 @@ export function Nav() {
               <Link
                 key={link.label}
                 href={getNavHref(pathname, link.href, link.anchor)}
-                className="bg-[linear-gradient(#3eb7bb,#3eb7bb)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-1 font-body text-sm font-medium text-text-secondary transition-[background-size,color] duration-200 ease-in-out hover:bg-[length:100%_1px] hover:text-text-primary"
+                className={clsx(
+                  "bg-[linear-gradient(#3eb7bb,#3eb7bb)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-1 font-body text-sm font-medium transition-[background-size,color] duration-200 ease-in-out hover:bg-[length:100%_1px]",
+                  isDarkSection
+                    ? "text-[#AFC0C0] hover:text-text-inverse"
+                    : "text-text-secondary hover:text-text-primary",
+                )}
               >
                 {link.label}
               </Link>
@@ -67,7 +79,10 @@ export function Nav() {
           <div className="flex flex-1 items-center justify-end">
             <Link
               href={pathname === "/" ? "#contact" : "/contact"}
-              className="btn-ghost hidden hover:border-accent hover:bg-accent hover:text-text-inverse md:inline-flex"
+              className={clsx(
+                "btn-ghost hidden hover:border-accent hover:bg-accent hover:text-text-inverse md:inline-flex",
+                isDarkSection && "border-white/30 text-text-inverse",
+              )}
             >
               Book a Call
             </Link>
@@ -77,7 +92,10 @@ export function Nav() {
               aria-label="Open navigation menu"
               aria-expanded={isMenuOpen}
               onClick={() => setIsMenuOpen(true)}
-              className="inline-flex h-11 w-11 items-center justify-center text-text-primary transition-colors duration-200 hover:text-accent md:hidden"
+              className={clsx(
+                "inline-flex h-11 w-11 items-center justify-center transition-colors duration-200 hover:text-accent md:hidden",
+                isDarkSection ? "text-text-inverse" : "text-text-primary",
+              )}
             >
               <Menu size={24} strokeWidth={1.75} />
             </button>

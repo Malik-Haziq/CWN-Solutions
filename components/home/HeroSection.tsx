@@ -14,7 +14,10 @@ export function HeroSection({ enabled }: { enabled: boolean }) {
     : () => ({});
 
   return (
-    <section className="relative isolate flex min-h-[calc(100svh-80px)] flex-col overflow-hidden bg-bg-ink text-text-inverse">
+    <section
+      data-nav-theme="dark"
+      className="relative isolate flex min-h-[calc(100svh-80px)] flex-col overflow-hidden bg-bg-ink text-text-inverse"
+    >
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 opacity-[0.28] [background-image:linear-gradient(rgba(255,255,255,.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.16)_1px,transparent_1px)] [background-size:64px_64px]"

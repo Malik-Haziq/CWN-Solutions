@@ -9,7 +9,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Blog and Insights",
   description:
-    "Security, SaaS development, and industry technology insights for funded founders and operators.",
+    "Security, FinTech, LegalTech, hospitality, AI, and founder guidance for teams building serious digital products.",
   path: "/blog",
 });
 
@@ -26,7 +26,7 @@ export default function BlogPage() {
             Insights & Perspectives
           </h1>
           <p className="mt-5 max-w-[620px] font-body text-[17px] leading-8 text-text-secondary">
-            Practical thinking on security, SaaS development, and
+            Practical thinking on security, product delivery, and
             industry-specific technology for teams building serious digital
             products.
           </p>

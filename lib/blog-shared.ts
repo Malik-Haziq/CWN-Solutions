@@ -1,11 +1,34 @@
+import type { BlogCategory } from "@/lib/blog-categories";
+
+export type BlogImage = {
+  src: string;
+  alt: string;
+  placeholder: boolean;
+  brief?: string;
+  caption?: string;
+};
+
+export type BlogAuthor = {
+  id: string;
+  name: string;
+  role: string;
+  credibility: string;
+  schemaType: "Person" | "Organization";
+  url?: string;
+};
+
 export type BlogPostMeta = {
   slug: string;
   title: string;
   description: string;
   publishedAt: string;
-  category: string;
+  updatedAt?: string;
+  category: BlogCategory;
   readTime: string;
   featured: boolean;
+  author: BlogAuthor;
+  coverImage: BlogImage;
+  definitiveAnswer?: string;
 };
 
 export type BlogPost = BlogPostMeta & {

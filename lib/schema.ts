@@ -27,6 +27,11 @@ type ArticleSchemaInput = {
   datePublished: string;
   dateModified?: string;
   image?: string;
+  author: {
+    name: string;
+    type: "Person" | "Organization";
+    url?: string;
+  };
 };
 
 const areaServed = [
@@ -125,6 +130,7 @@ export function articleSchema({
   datePublished,
   dateModified,
   image,
+  author,
 }: ArticleSchemaInput): JsonLd {
   return {
     "@context": "https://schema.org",
@@ -135,7 +141,11 @@ export function articleSchema({
     datePublished,
     ...(dateModified ? { dateModified } : {}),
     ...(image ? { image: absoluteUrl(image) } : {}),
-    author: { "@id": `${site.url}/#organization` },
+    author: {
+      "@type": author.type,
+      name: author.name,
+      ...(author.url ? { url: absoluteUrl(author.url) } : {}),
+    },
     publisher: { "@id": `${site.url}/#organization` },
   };
 }

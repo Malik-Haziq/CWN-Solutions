@@ -1,4 +1,5 @@
 import type { MDXComponents } from "mdx/types";
+import { BlogImage } from "@/components/blog/BlogImage";
 import { SectionDivider } from "@/components/ui/SectionDivider";
 import {
   AuthorBio,
@@ -88,6 +89,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     li: ({ children }) => <li className="pl-1">{children}</li>,
     AuthorBio,
+    BlogImage,
     ComparisonTable,
     DefinitiveAnswer,
     FaqAccordion,

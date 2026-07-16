@@ -62,6 +62,8 @@ export type IndustryPageTemplateProps = {
     source: string;
     href: string;
     linkLabel: string;
+    secondaryHref?: string;
+    secondaryLinkLabel?: string;
     tags: string[];
   };
   faqs: FaqItem[];
@@ -103,7 +105,7 @@ export function IndustryPageTemplate({
   return (
     <PageShell
       breadcrumbs={[
-        { label: "Industries", href: "/#industries" },
+        { label: "Industries", href: "/industries" },
         { label: name },
       ]}
       footerCta={
@@ -303,12 +305,19 @@ export function IndustryPageTemplate({
                 detail={caseStudy.detail}
                 source={caseStudy.source}
               />
-              <Link
-                href={caseStudy.href}
-                className="link-accent mt-10 inline-flex self-start"
-              >
-                {caseStudy.linkLabel}
-              </Link>
+              <div className="mt-10 flex flex-col items-start gap-4">
+                <Link href={caseStudy.href} className="link-accent inline-flex">
+                  {caseStudy.linkLabel}
+                </Link>
+                {caseStudy.secondaryHref && caseStudy.secondaryLinkLabel ? (
+                  <Link
+                    href={caseStudy.secondaryHref}
+                    className="link-accent inline-flex"
+                  >
+                    {caseStudy.secondaryLinkLabel}
+                  </Link>
+                ) : null}
+              </div>
             </div>
           </div>
         </section>

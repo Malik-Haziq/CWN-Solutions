@@ -91,6 +91,11 @@ export default function SaasProductDevelopmentPage() {
           closing:
             "The service replaces that uncertainty with a build you can inspect, explain, and confidently put in front of users.",
         }}
+        includedContent={{
+          title: "One build, four trust workstreams.",
+          introduction:
+            "Each phase reduces a different kind of product risk. Security is part of the decision-making from the first scope to the final handoff.",
+        }}
         phases={[
           {
             title: "Product definition & threat-aware scoping",
@@ -215,7 +220,18 @@ export default function SaasProductDevelopmentPage() {
             href: "/enterprise-ai",
           },
         ]}
+        industriesContent={{
+          title: "Where trust is part of the product.",
+          introduction:
+            "Most relevant when customers, regulators, or enterprise buyers need confidence in how the product handles sensitive data.",
+        }}
         faqs={faqs}
+        faqContent={{
+          eyebrow: "SaaS development FAQ",
+          title: "The questions founders ask before they commit.",
+          introduction:
+            "Practical planning ranges and the trade-offs behind them. Your exact scope is confirmed during discovery.",
+        }}
         cta={{
           title: "Turn the product idea into a buildable plan.",
           description:

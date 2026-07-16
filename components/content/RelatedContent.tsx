@@ -11,17 +11,75 @@ type RelatedContentProps = {
   items: RelatedContentItem[];
   title?: string;
   eyebrow?: string;
+  introduction?: string;
+  variant?: "default" | "industries";
 };
 
 export function RelatedContent({
   items,
   title = "Related content",
   eyebrow = "Keep exploring",
+  introduction,
+  variant = "default",
 }: RelatedContentProps) {
-  const relatedItems = items.slice(0, 3);
+  const relatedItems = items.slice(0, variant === "industries" ? 4 : 3);
 
   if (relatedItems.length === 0) {
     return null;
+  }
+
+  if (variant === "industries") {
+    return (
+      <section
+        className="border-y border-border-default"
+        aria-labelledby="industries-title"
+      >
+        <div className="mx-auto w-full max-w-7xl px-5 py-section-sm sm:px-8 lg:px-10">
+          <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+            <div>
+              <p className="section-label">{eyebrow}</p>
+              <h2
+                id="industries-title"
+                className="mt-5 font-display text-display-md font-extrabold text-text-primary"
+              >
+                {title}
+              </h2>
+            </div>
+            {introduction ? (
+              <p className="max-w-md font-body text-sm leading-6 text-text-secondary md:text-right">
+                {introduction}
+              </p>
+            ) : null}
+          </div>
+
+          <div className="mt-10 grid border-l border-t border-border-default sm:grid-cols-2 lg:grid-cols-4">
+            {relatedItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group min-h-[220px] border-b border-r border-border-default bg-bg-base p-6 transition-colors duration-200 hover:bg-bg-surface sm:p-7"
+              >
+                <span className="font-mono text-[10px] tracking-[0.12em] text-accent-dark">
+                  {item.label}
+                </span>
+                <h3 className="mt-10 font-display text-xl font-bold text-text-primary group-hover:text-accent-dark">
+                  {item.title}
+                </h3>
+                <p className="mt-3 font-body text-sm leading-6 text-text-secondary">
+                  {item.description}
+                </p>
+                <span
+                  aria-hidden="true"
+                  className="mt-6 inline-block text-accent transition-transform group-hover:translate-x-1"
+                >
+                  →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (

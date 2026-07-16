@@ -5,6 +5,7 @@ import {
   FaqAccordion,
   PageBottomCta,
   ProofPoint,
+  RelatedContent,
   type ComparisonRow,
 } from "@/components/content";
 import { PageShell } from "@/components/layout/PageShell";
@@ -36,6 +37,10 @@ export type ServicePageTemplateProps = {
     pressures: { title: string; description: string }[];
     closing: string;
   };
+  includedContent: {
+    title: string;
+    introduction: string;
+  };
   phases: ServicePhase[];
   comparison: {
     title: string;
@@ -51,10 +56,21 @@ export type ServicePageTemplateProps = {
     metricLabel: string;
     metricDetail: string;
     href: string;
+    linkLabel?: string;
+    sourceLabel?: string;
     tags: string[];
   };
   industries: ServiceIndustry[];
+  industriesContent: {
+    title: string;
+    introduction: string;
+  };
   faqs: FaqItem[];
+  faqContent: {
+    eyebrow: string;
+    title: string;
+    introduction: string;
+  };
   cta: {
     title: string;
     description: string;
@@ -69,11 +85,14 @@ export function ServicePageTemplate({
   positioning,
   definitiveAnswer,
   problem,
+  includedContent,
   phases,
   comparison,
   caseStudy,
   industries,
+  industriesContent,
   faqs,
+  faqContent,
   cta,
 }: ServicePageTemplateProps) {
   return (
@@ -176,12 +195,10 @@ export function ServicePageTemplate({
               id="included-title"
               className="mt-5 font-display text-display-md font-extrabold text-text-primary"
             >
-              One build, four trust workstreams.
+              {includedContent.title}
             </h2>
             <p className="mt-5 max-w-sm font-body text-base leading-7 text-text-secondary">
-              Each phase reduces a different kind of product risk. Security is
-              part of the decision-making from the first scope to the final
-              handoff.
+              {includedContent.introduction}
             </p>
           </div>
 
@@ -285,74 +302,42 @@ export function ServicePageTemplate({
                   value={caseStudy.metric}
                   label={caseStudy.metricLabel}
                   detail={caseStudy.metricDetail}
-                  source="SafeHerit portfolio proof point"
+                  source={
+                    caseStudy.sourceLabel ??
+                    `${caseStudy.name} portfolio proof point`
+                  }
                 />
               </div>
               <Link
                 href={caseStudy.href}
                 className="link-accent relative mt-8 inline-flex self-start"
               >
-                Read the SafeHerit case study →
+                {caseStudy.linkLabel ??
+                  `Read the ${caseStudy.name} case study →`}
               </Link>
             </div>
           </div>
         </section>
 
-        <section
-          className="border-y border-border-default"
-          aria-labelledby="industries-title"
-        >
-          <div className="mx-auto w-full max-w-7xl px-5 py-section-sm sm:px-8 lg:px-10">
-            <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
-              <div>
-                <p className="section-label">Best-fit industries</p>
-                <h2
-                  id="industries-title"
-                  className="mt-5 font-display text-display-md font-extrabold text-text-primary"
-                >
-                  Where trust is part of the product.
-                </h2>
-              </div>
-              <p className="max-w-md font-body text-sm leading-6 text-text-secondary md:text-right">
-                Most relevant when customers, regulators, or enterprise buyers
-                need confidence in how the product handles sensitive data.
-              </p>
-            </div>
-
-            <div className="mt-10 grid border-l border-t border-border-default sm:grid-cols-2 lg:grid-cols-4">
-              {industries.map((industry) => (
-                <Link
-                  key={industry.name}
-                  href={industry.href}
-                  className="group min-h-[220px] border-b border-r border-border-default bg-bg-base p-6 transition-colors duration-200 hover:bg-bg-surface sm:p-7"
-                >
-                  <span className="font-mono text-[10px] tracking-[0.12em] text-accent-dark">
-                    {industry.code}
-                  </span>
-                  <h3 className="mt-10 font-display text-xl font-bold text-text-primary group-hover:text-accent-dark">
-                    {industry.name}
-                  </h3>
-                  <p className="mt-3 font-body text-sm leading-6 text-text-secondary">
-                    {industry.description}
-                  </p>
-                  <span
-                    aria-hidden="true"
-                    className="mt-6 inline-block text-accent transition-transform group-hover:translate-x-1"
-                  >
-                    →
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
+        <RelatedContent
+          variant="industries"
+          eyebrow="Best-fit industries"
+          title={industriesContent.title}
+          introduction={industriesContent.introduction}
+          items={industries.map((industry) => ({
+            label: industry.code,
+            title: industry.name,
+            description: industry.description,
+            href: industry.href,
+          }))}
+        />
 
         <div className="mx-auto w-full max-w-7xl px-5 py-section-sm sm:px-8 lg:px-10 lg:py-section-md">
           <FaqAccordion
             items={faqs}
-            eyebrow="SaaS development FAQ"
-            title="The questions founders ask before they commit."
-            introduction="Practical planning ranges and the trade-offs behind them. Your exact scope is confirmed during discovery."
+            eyebrow={faqContent.eyebrow}
+            title={faqContent.title}
+            introduction={faqContent.introduction}
           />
         </div>
 

@@ -93,6 +93,11 @@ export function RelatedContent({
           >
             {title}
           </h2>
+          {introduction ? (
+            <p className="mt-4 max-w-2xl font-body text-sm leading-6 text-text-secondary">
+              {introduction}
+            </p>
+          ) : null}
         </div>
         <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-text-muted">
           {String(relatedItems.length).padStart(2, "0")} selected

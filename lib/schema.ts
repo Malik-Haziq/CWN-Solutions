@@ -14,6 +14,12 @@ type ServiceSchemaInput = {
   areaServed?: string[];
 };
 
+type IndustrySchemaInput = {
+  name: string;
+  description: string;
+  path: string;
+};
+
 type ArticleSchemaInput = {
   headline: string;
   description: string;
@@ -90,6 +96,25 @@ export function serviceSchema({
     url: absoluteUrl(path),
     provider: { "@id": `${site.url}/#organization` },
     areaServed: serviceAreaServed,
+  };
+}
+
+export function industrySchema({
+  name,
+  description,
+  path,
+}: IndustrySchemaInput): JsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name,
+    description,
+    url: absoluteUrl(path),
+    about: {
+      "@type": "Thing",
+      name,
+    },
+    publisher: { "@id": `${site.url}/#organization` },
   };
 }
 

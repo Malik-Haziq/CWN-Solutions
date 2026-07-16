@@ -1,22 +1,25 @@
 import type { Metadata } from "next";
 import { BlogIndexClient } from "@/components/blog/BlogIndexClient";
+import { PageShell } from "@/components/layout/PageShell";
 import { SectionDivider } from "@/components/ui/SectionDivider";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { getAllCategories, getAllPosts } from "@/lib/blog";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Blog and Insights | CWN Solutions",
+export const metadata: Metadata = createPageMetadata({
+  title: "Blog and Insights",
   description:
     "Security, SaaS development, and industry technology insights for funded founders and operators.",
-};
+  path: "/blog",
+});
 
 export default function BlogPage() {
   const posts = getAllPosts();
   const categories = getAllCategories();
 
   return (
-    <main className="bg-bg-base">
-      <section className="mx-auto w-full max-w-7xl px-5 py-section-md sm:px-8 lg:px-10">
+    <PageShell breadcrumbs={[{ label: "Blog" }]}>
+      <section className="mx-auto w-full max-w-7xl px-5 pb-section-md sm:px-8 lg:px-10">
         <div className="max-w-3xl">
           <SectionLabel>Blog</SectionLabel>
           <h1 className="mt-5 font-display text-display-lg font-extrabold text-text-primary">
@@ -35,6 +38,6 @@ export default function BlogPage() {
 
         <BlogIndexClient posts={posts} categories={categories} />
       </section>
-    </main>
+    </PageShell>
   );
 }

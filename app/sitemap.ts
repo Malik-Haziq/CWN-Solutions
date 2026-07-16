@@ -1,24 +1,22 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
-
-const siteUrl = "https://cwnsolutions.com";
+import { absoluteUrl } from "@/lib/site";
+import { getStaticAppRoutes } from "@/lib/sitemap";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const staticRoutes = getStaticAppRoutes().map(({ path, lastModified }) => ({
+    url: absoluteUrl(path),
+    lastModified,
+    changeFrequency: (path === "/" ? "weekly" : "monthly") as
+      | "weekly"
+      | "monthly",
+    priority: path === "/" ? 1 : path === "/blog" ? 0.8 : 0.7,
+  }));
+
   return [
-    {
-      url: siteUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${siteUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
+    ...staticRoutes,
     ...getAllPosts().map((post) => ({
-      url: `${siteUrl}/blog/${post.slug}`,
+      url: absoluteUrl(`/blog/${post.slug}`),
       lastModified: new Date(post.publishedAt),
       changeFrequency: "monthly" as const,
       priority: 0.7,

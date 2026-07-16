@@ -1,6 +1,7 @@
 import { HomeClient } from "@/components/home/HomeClient";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllPosts, getFeaturedPost } from "@/lib/blog";
-import Script from "next/script";
+import { faqPageSchema } from "@/lib/schema";
 
 const faqSchema = [
   [
@@ -43,17 +44,11 @@ export default function Home() {
 
   return (
     <>
-      <Script id="faq-schema" type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqSchema.map(([name, text]) => ({
-            "@type": "Question",
-            name,
-            acceptedAnswer: { "@type": "Answer", text },
-          })),
-        })}
-      </Script>
+      <JsonLd
+        schema={faqPageSchema(
+          faqSchema.map(([question, answer]) => ({ question, answer })),
+        )}
+      />
       <p className="sr-only">
         CWN Solutions is a security-first SaaS development agency. It builds
         full-stack software products for FinTech, LegalTech, HealthTech,

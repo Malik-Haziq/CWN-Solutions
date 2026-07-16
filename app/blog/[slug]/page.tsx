@@ -2,14 +2,17 @@ import type { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import { PostToc } from "@/components/blog/PostToc";
+import { PageShell } from "@/components/layout/PageShell";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { SectionDivider } from "@/components/ui/SectionDivider";
 import { TealDot } from "@/components/ui/TealDot";
 import { getAllPosts, getHeadingsFromMdx, getPostBySlug } from "@/lib/blog";
 import { formatPostDate } from "@/lib/blog-shared";
+import { createPageMetadata } from "@/lib/metadata";
+import { articleSchema } from "@/lib/schema";
 import { useMDXComponents } from "@/mdx-components";
 
 const agencyName = "CWN Solutions";
-const siteUrl = "https://cwnsolutions.com";
 
 type BlogPostPageProps = {
   params: {
@@ -30,21 +33,13 @@ export function generateMetadata({ params }: BlogPostPageProps): Metadata {
     return {};
   }
 
-  const url = `${siteUrl}/blog/${post.slug}`;
-
-  return {
-    title: `${post.title} | ${agencyName}`,
+  return createPageMetadata({
+    title: post.title,
     description: post.description,
-    alternates: {
-      canonical: url,
-    },
-    openGraph: {
-      title: post.title,
-      description: post.description,
-      type: "article",
-      url,
-    },
-  };
+    path: `/blog/${post.slug}`,
+    type: "article",
+    publishedTime: post.publishedAt,
+  });
 }
 
 export default function BlogPostPage({ params }: BlogPostPageProps) {
@@ -56,35 +51,20 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
   const headings = getHeadingsFromMdx(post.content);
   const components = useMDXComponents({});
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
+  const jsonLd = articleSchema({
     headline: post.title,
     description: post.description,
+    path: `/blog/${post.slug}`,
     datePublished: post.publishedAt,
-    author: {
-      "@type": "Organization",
-      name: agencyName,
-      url: siteUrl,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: agencyName,
-      logo: {
-        "@type": "ImageObject",
-        url: `${siteUrl}/logo.png`,
-      },
-    },
-  };
+  });
 
   return (
-    <main className="bg-bg-base">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <PageShell
+      breadcrumbs={[{ label: "Blog", href: "/blog" }, { label: post.title }]}
+    >
+      <JsonLd schema={jsonLd} />
 
-      <article className="mx-auto w-full max-w-7xl px-5 py-section-md sm:px-8 lg:px-10">
+      <article className="mx-auto w-full max-w-7xl px-5 pb-section-md sm:px-8 lg:px-10">
         <div className="animate-[fade-in_0.45s_ease-out]">
           <span className="badge badge-accent">{post.category}</span>
           <h1 className="mt-7 font-display text-display-lg font-extrabold text-text-primary">
@@ -121,24 +101,11 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                 Back to all articles
               </a>
             </div>
-
-            <div className="mt-12 border border-border-default bg-bg-surface p-10">
-              <h2 className="font-display text-display-sm font-bold text-text-primary">
-                Working on something that needs to be built right?
-              </h2>
-              <p className="mt-4 font-body text-base leading-7 text-text-secondary">
-                Book a discovery call and get clear on the safest path from idea
-                to launch.
-              </p>
-              <a href="/#contact" className="btn-primary mt-7">
-                Book a Free Call →
-              </a>
-            </div>
           </div>
 
           <PostToc headings={headings} />
         </div>
       </article>
-    </main>
+    </PageShell>
   );
 }

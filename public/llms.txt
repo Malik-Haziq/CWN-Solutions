@@ -1,0 +1,13 @@
+# CWN Solutions
+
+CWN Solutions is a security-first software development agency. It designs and builds full-stack SaaS products for founders and operators in trust-critical industries.
+
+The company provides SaaS product development, MVP development for funded startups, enterprise AI integration, hospitality digital transformation, e-commerce platform development, and security and compliance architecture.
+
+CWN Solutions serves FinTech, LegalTech, HealthTech, enterprise AI, hospitality, and e-commerce organizations. It works with international clients, including teams in the UAE, Europe, Australia, and Singapore.
+
+Important pages:
+- Homepage: https://cwnsolutions.com/
+- Services: https://cwnsolutions.com/services
+- Case studies: https://cwnsolutions.com/case-studies
+- Blog: https://cwnsolutions.com/blog

@@ -185,6 +185,12 @@ export default function EnterpriseAiIntegrationPage() {
           metricDetail:
             "Auxee AI is the relevant proof point for connecting useful language-model workflows to sensitive organizational knowledge while keeping data control at the center of the product.",
           href: "/case-studies/auxee-ai",
+          additionalLinks: [
+            {
+              href: "/case-studies/zyrentis-ai",
+              label: "Read the Zyrentis AI case study →",
+            },
+          ],
           tags: [
             "Private knowledge",
             "LLM integration",

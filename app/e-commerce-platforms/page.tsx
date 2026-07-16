@@ -189,6 +189,12 @@ export default function EcommercePlatformsPage() {
           href: "/#work",
           linkLabel: "Explore selected delivery work →",
           sourceLabel: "CWN Solutions commerce portfolio",
+          additionalLinks: [
+            {
+              href: "/case-studies/the-elva-edit",
+              label: "Read The Elva Edit case study →",
+            },
+          ],
           tags: [
             "Secure checkout",
             "Customer accounts",

@@ -64,6 +64,7 @@ export type IndustryPageTemplateProps = {
     linkLabel: string;
     secondaryHref?: string;
     secondaryLinkLabel?: string;
+    additionalLinks?: { href: string; label: string }[];
     tags: string[];
   };
   faqs: FaqItem[];
@@ -317,6 +318,15 @@ export function IndustryPageTemplate({
                     {caseStudy.secondaryLinkLabel}
                   </Link>
                 ) : null}
+                {caseStudy.additionalLinks?.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="link-accent inline-flex"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>

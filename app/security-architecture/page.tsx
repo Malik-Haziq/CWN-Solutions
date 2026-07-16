@@ -186,6 +186,16 @@ export default function SecurityArchitecturePage() {
           metricDetail:
             "SafeHerit demonstrates architecture as a product capability: privacy, access, recovery decisions, and usability were designed together and verified against the trust claim.",
           href: "/case-studies/safeherit",
+          additionalLinks: [
+            {
+              href: "/case-studies/expertarm",
+              label: "Read the ExpertArm case study →",
+            },
+            {
+              href: "/case-studies/vurke",
+              label: "Read the Vurke case study →",
+            },
+          ],
           tags: [
             "Zero-knowledge design",
             "Encryption architecture",

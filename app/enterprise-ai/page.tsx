@@ -195,6 +195,12 @@ export default function EnterpriseAiPage() {
           source: "Auxee AI, built for and deployed via PreScouter",
           href: "/case-studies/auxee-ai",
           linkLabel: "Read the Auxee AI case study →",
+          additionalLinks: [
+            {
+              href: "/case-studies/zyrentis-ai",
+              label: "Read the Zyrentis AI case study →",
+            },
+          ],
           tags: [
             "Private knowledge",
             "Permission-aware AI",

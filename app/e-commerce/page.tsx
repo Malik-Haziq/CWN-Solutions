@@ -196,6 +196,12 @@ export default function EcommerceIndustryPage() {
           source: "CWN Solutions commerce portfolio",
           href: "/#work",
           linkLabel: "Explore selected delivery work →",
+          additionalLinks: [
+            {
+              href: "/case-studies/the-elva-edit",
+              label: "Read The Elva Edit case study →",
+            },
+          ],
           tags: [
             "Payment boundaries",
             "Customer accounts",

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
+import { caseStudies } from "@/lib/case-studies";
 import { absoluteUrl } from "@/lib/site";
 import { getStaticAppRoutes } from "@/lib/sitemap";
 
@@ -15,6 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes,
+    ...caseStudies.map((caseStudy) => ({
+      url: absoluteUrl(`/case-studies/${caseStudy.slug}`),
+      lastModified: new Date(caseStudy.updatedAt ?? caseStudy.publishedAt),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
     ...getAllPosts().map((post) => ({
       url: absoluteUrl(`/blog/${post.slug}`),
       lastModified: new Date(post.publishedAt),

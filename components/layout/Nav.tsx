@@ -11,7 +11,7 @@ import { useNavTheme } from "@/hooks/useNavTheme";
 
 const navLinks = [
   { label: "Services", href: "/services", anchor: "#services" },
-  { label: "Work", href: "/work", anchor: "#work" },
+  { label: "Work", href: "/case-studies", anchor: "#work" },
   { label: "Industries", href: "/industries", anchor: "#industries" },
   { label: "Process", href: "/process", anchor: "#process" },
   { label: "Blog", href: "/blog", anchor: "#blog" },

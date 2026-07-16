@@ -197,6 +197,16 @@ export default function FintechPage() {
           source: "SafeHerit portfolio proof point",
           href: "/case-studies/safeherit",
           linkLabel: "Read the SafeHerit case study →",
+          additionalLinks: [
+            {
+              href: "/case-studies/expertarm",
+              label: "Read the ExpertArm case study →",
+            },
+            {
+              href: "/case-studies/vurke",
+              label: "Read the Vurke case study →",
+            },
+          ],
           tags: [
             "Zero-knowledge encryption",
             "Financial records",

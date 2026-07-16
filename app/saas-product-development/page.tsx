@@ -183,6 +183,16 @@ export default function SaasProductDevelopmentPage() {
           metricDetail:
             "The portfolio result demonstrates that product usability and rigorous data protection can be designed as one system, rather than traded against each other at the end.",
           href: "/case-studies/safeherit",
+          additionalLinks: [
+            {
+              href: "/case-studies/expertarm",
+              label: "Read the ExpertArm case study →",
+            },
+            {
+              href: "/case-studies/vurke",
+              label: "Read the Vurke case study →",
+            },
+          ],
           tags: [
             "Zero-knowledge encryption",
             "Access control",

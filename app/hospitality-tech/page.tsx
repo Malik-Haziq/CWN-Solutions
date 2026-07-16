@@ -198,8 +198,6 @@ export default function HospitalityTechPage() {
           source: "CWN Solutions hospitality and travel portfolio",
           href: "/case-studies/avian-hospitality",
           linkLabel: "Read the Avian Hospitality case study →",
-          secondaryHref: "/case-studies/sabre-corporation",
-          secondaryLinkLabel: "Read the Sabre Corporation case study →",
           tags: [
             "Multi-property operations",
             "Guest journeys",

@@ -58,6 +58,7 @@ export type ServicePageTemplateProps = {
     href: string;
     linkLabel?: string;
     sourceLabel?: string;
+    additionalLinks?: { href: string; label: string }[];
     tags: string[];
   };
   industries: ServiceIndustry[];
@@ -308,13 +309,21 @@ export function ServicePageTemplate({
                   }
                 />
               </div>
-              <Link
-                href={caseStudy.href}
-                className="link-accent relative mt-8 inline-flex self-start"
-              >
-                {caseStudy.linkLabel ??
-                  `Read the ${caseStudy.name} case study →`}
-              </Link>
+              <div className="relative mt-8 flex flex-col items-start gap-4">
+                <Link href={caseStudy.href} className="link-accent inline-flex">
+                  {caseStudy.linkLabel ??
+                    `Read the ${caseStudy.name} case study →`}
+                </Link>
+                {caseStudy.additionalLinks?.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="link-accent inline-flex"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </section>

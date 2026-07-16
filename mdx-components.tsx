@@ -1,21 +1,21 @@
-import type { MDXComponents } from 'mdx/types';
-import { SectionDivider } from '@/components/ui/SectionDivider';
-import { slugifyHeading } from '@/lib/blog-shared';
+import type { MDXComponents } from "mdx/types";
+import { SectionDivider } from "@/components/ui/SectionDivider";
+import { slugifyHeading } from "@/lib/blog-shared";
 
 function getTextFromChildren(children: React.ReactNode): string {
-  if (typeof children === 'string') {
+  if (typeof children === "string") {
     return children;
   }
 
   if (Array.isArray(children)) {
-    return children.map(getTextFromChildren).join('');
+    return children.map(getTextFromChildren).join("");
   }
 
-  if (typeof children === 'number') {
+  if (typeof children === "number") {
     return String(children);
   }
 
-  return '';
+  return "";
 }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {

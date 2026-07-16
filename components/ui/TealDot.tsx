@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 
 type TealDotProps = {
   className?: string;
@@ -9,7 +9,7 @@ export function TealDot({ className }: TealDotProps) {
     <span
       aria-hidden="true"
       className={clsx(
-        'inline-block h-[7px] w-[7px] rounded-full bg-accent align-baseline',
+        "inline-block h-[7px] w-[7px] rounded-full bg-accent align-baseline",
         className,
       )}
     />

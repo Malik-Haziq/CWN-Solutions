@@ -1,13 +1,13 @@
-import type { Metadata } from 'next';
-import { BlogIndexClient } from '@/components/blog/BlogIndexClient';
-import { SectionDivider } from '@/components/ui/SectionDivider';
-import { SectionLabel } from '@/components/ui/SectionLabel';
-import { getAllCategories, getAllPosts } from '@/lib/blog';
+import type { Metadata } from "next";
+import { BlogIndexClient } from "@/components/blog/BlogIndexClient";
+import { SectionDivider } from "@/components/ui/SectionDivider";
+import { SectionLabel } from "@/components/ui/SectionLabel";
+import { getAllCategories, getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: 'Blog and Insights | CWN Solutions',
+  title: "Blog and Insights | CWN Solutions",
   description:
-    'Security, SaaS development, and industry technology insights for funded founders and operators.',
+    "Security, SaaS development, and industry technology insights for funded founders and operators.",
 };
 
 export default function BlogPage() {
@@ -23,8 +23,9 @@ export default function BlogPage() {
             Insights & Perspectives
           </h1>
           <p className="mt-5 max-w-[620px] font-body text-[17px] leading-8 text-text-secondary">
-            Practical thinking on security, SaaS development, and industry-specific
-            technology for teams building serious digital products.
+            Practical thinking on security, SaaS development, and
+            industry-specific technology for teams building serious digital
+            products.
           </p>
         </div>
 

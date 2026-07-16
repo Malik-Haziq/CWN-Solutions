@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
-import clsx from 'clsx';
-import { useState } from 'react';
-import { TealDot } from '@/components/ui/TealDot';
-import { useScrolled } from '@/hooks/useScrolled';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
+import clsx from "clsx";
+import { useState } from "react";
+import { TealDot } from "@/components/ui/TealDot";
+import { useScrolled } from "@/hooks/useScrolled";
 
 const navLinks = [
-  { label: 'Services', href: '/services', anchor: '#services' },
-  { label: 'Work', href: '/work', anchor: '#work' },
-  { label: 'Industries', href: '/industries', anchor: '#industries' },
-  { label: 'Process', href: '/process', anchor: '#process' },
-  { label: 'Blog', href: '/blog', anchor: '#blog' },
+  { label: "Services", href: "/services", anchor: "#services" },
+  { label: "Work", href: "/work", anchor: "#work" },
+  { label: "Industries", href: "/industries", anchor: "#industries" },
+  { label: "Process", href: "/process", anchor: "#process" },
+  { label: "Blog", href: "/blog", anchor: "#blog" },
 ];
 
 function getNavHref(pathname: string, href: string, anchor: string) {
-  return pathname === '/' ? anchor : href;
+  return pathname === "/" ? anchor : href;
 }
 
 export function Nav() {
@@ -31,10 +31,10 @@ export function Nav() {
     <>
       <header
         className={clsx(
-          'fixed inset-x-0 top-0 z-50 h-20 border-b transition-[background-color,border-color] duration-200 ease-in-out',
+          "fixed inset-x-0 top-0 z-50 h-20 border-b transition-[background-color,border-color] duration-200 ease-in-out",
           isScrolled
-            ? 'border-border-subtle bg-bg-surface'
-            : 'border-transparent bg-transparent',
+            ? "border-border-subtle bg-bg-surface"
+            : "border-transparent bg-transparent",
         )}
       >
         <nav
@@ -66,7 +66,7 @@ export function Nav() {
 
           <div className="flex flex-1 items-center justify-end">
             <Link
-              href={pathname === '/' ? '#contact' : '/contact'}
+              href={pathname === "/" ? "#contact" : "/contact"}
               className="btn-ghost hidden hover:border-accent hover:bg-accent hover:text-text-inverse md:inline-flex"
             >
               Book a Call
@@ -87,10 +87,10 @@ export function Nav() {
 
       <div
         className={clsx(
-          'fixed inset-0 z-[60] bg-bg-surface transition-opacity duration-200 ease-in-out md:hidden',
+          "fixed inset-0 z-[60] bg-bg-surface transition-opacity duration-200 ease-in-out md:hidden",
           isMenuOpen
-            ? 'pointer-events-auto opacity-100'
-            : 'pointer-events-none opacity-0',
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0",
         )}
         aria-hidden={!isMenuOpen}
       >

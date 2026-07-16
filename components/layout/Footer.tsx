@@ -1,31 +1,35 @@
-import Link from 'next/link';
-import { Contact, Mail } from 'lucide-react';
-import { TealDot } from '@/components/ui/TealDot';
+import Link from "next/link";
+import { Contact, Mail } from "lucide-react";
+import { TealDot } from "@/components/ui/TealDot";
 
 const serviceLinks = [
-  'SaaS Product Development',
-  'MVP for Startups',
-  'Enterprise AI Integration',
-  'Hospitality Digital Transformation',
-  'E-commerce Platforms',
-  'Security Architecture',
-  'API & Backend Systems',
+  "SaaS Product Development",
+  "MVP for Startups",
+  "Enterprise AI Integration",
+  "Hospitality Digital Transformation",
+  "E-commerce Platforms",
+  "Security Architecture",
+  "API & Backend Systems",
 ];
 
 const industryLinks = [
-  'FinTech',
-  'LegalTech',
-  'HealthTech',
-  'Enterprise AI',
-  'Hospitality Tech',
-  'E-commerce',
-  'Security Tech',
+  "FinTech",
+  "LegalTech",
+  "HealthTech",
+  "Enterprise AI",
+  "Hospitality Tech",
+  "E-commerce",
+  "Security Tech",
 ];
 
-const companyLinks = ['Case Studies', 'Blog', 'Book a Call', 'Contact'];
+const companyLinks = ["Case Studies", "Blog", "Book a Call", "Contact"];
 
 function slugify(label: string) {
-  return `/${label.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
+  return `/${label
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")}`;
 }
 
 type FooterColumnProps = {

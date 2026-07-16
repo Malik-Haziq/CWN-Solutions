@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { motion, useReducedMotion } from 'framer-motion';
-import { useState } from 'react';
-import { formatPostDate, type BlogPostMeta } from '@/lib/blog-shared';
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
+import { formatPostDate, type BlogPostMeta } from "@/lib/blog-shared";
 
 type BlogIndexClientProps = {
   posts: BlogPostMeta[];
@@ -11,17 +11,17 @@ type BlogIndexClientProps = {
 };
 
 export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeCategory, setActiveCategory] = useState("All");
   const shouldReduceMotion = useReducedMotion();
   const filteredPosts =
-    activeCategory === 'All'
+    activeCategory === "All"
       ? posts
       : posts.filter((post) => post.category === activeCategory);
 
   return (
     <>
       <div className="-mx-5 mt-10 flex gap-7 overflow-x-auto border-b border-border-subtle px-5 sm:-mx-8 sm:px-8 lg:mx-0 lg:px-0">
-        {['All', ...categories].map((category) => {
+        {["All", ...categories].map((category) => {
           const isActive = activeCategory === category;
 
           return (
@@ -31,8 +31,8 @@ export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
               onClick={() => setActiveCategory(category)}
               className={`shrink-0 border-b-2 pb-4 font-body text-sm transition-colors duration-150 ${
                 isActive
-                  ? 'border-accent font-semibold text-text-primary'
-                  : 'border-transparent text-text-muted hover:text-text-secondary'
+                  ? "border-accent font-semibold text-text-primary"
+                  : "border-transparent text-text-muted hover:text-text-secondary"
               }`}
             >
               {category}
@@ -49,7 +49,11 @@ export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
               ? {
                   initial: { opacity: 0, y: 18 },
                   animate: { opacity: 1, y: 0 },
-                  transition: { duration: 0.38, delay: index * 0.05, ease: 'easeOut' },
+                  transition: {
+                    duration: 0.38,
+                    delay: index * 0.05,
+                    ease: "easeOut",
+                  },
                 }
               : {})}
           >
@@ -57,7 +61,9 @@ export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
               href={`/blog/${post.slug}`}
               className="group flex min-h-[318px] flex-col border border-border-default bg-transparent p-7 transition-colors duration-150 hover:border-accent hover:bg-accent-muted"
             >
-              <span className="badge badge-accent self-start">{post.category}</span>
+              <span className="badge badge-accent self-start">
+                {post.category}
+              </span>
               <h2 className="mt-6 line-clamp-2 font-display text-xl font-bold leading-snug text-text-primary transition-colors duration-150 group-hover:text-accent">
                 {post.title}
               </h2>

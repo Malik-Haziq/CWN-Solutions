@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { motion, useReducedMotion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import type { TocHeading } from '@/lib/blog-shared';
+import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
+import type { TocHeading } from "@/lib/blog-shared";
 
 type PostTocProps = {
   headings: TocHeading[];
 };
 
 export function PostToc({ headings }: PostTocProps) {
-  const [activeId, setActiveId] = useState(headings[0]?.id ?? '');
+  const [activeId, setActiveId] = useState(headings[0]?.id ?? "");
   const [isOpen, setIsOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
@@ -22,14 +22,16 @@ export function PostToc({ headings }: PostTocProps) {
       (entries) => {
         const visibleEntry = entries
           .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+          .sort(
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+          )[0];
 
         if (visibleEntry?.target.id) {
           setActiveId(visibleEntry.target.id);
         }
       },
       {
-        rootMargin: '-100px 0px -65% 0px',
+        rootMargin: "-100px 0px -65% 0px",
         threshold: [0, 1],
       },
     );
@@ -57,7 +59,7 @@ export function PostToc({ headings }: PostTocProps) {
           href={`#${heading.id}`}
           onClick={() => setIsOpen(false)}
           className={`block font-body text-sm leading-6 transition-colors duration-150 hover:text-accent ${
-            activeId === heading.id ? 'text-accent' : 'text-text-secondary'
+            activeId === heading.id ? "text-accent" : "text-text-secondary"
           }`}
         >
           {heading.text}
@@ -76,9 +78,11 @@ export function PostToc({ headings }: PostTocProps) {
           aria-expanded={isOpen}
         >
           <span>On this page</span>
-          <span aria-hidden="true">{isOpen ? '-' : '+'}</span>
+          <span aria-hidden="true">{isOpen ? "-" : "+"}</span>
         </button>
-        {isOpen ? <div className="mt-5 border-t border-border-subtle pt-5">{list}</div> : null}
+        {isOpen ? (
+          <div className="mt-5 border-t border-border-subtle pt-5">{list}</div>
+        ) : null}
       </div>
 
       <motion.aside
@@ -87,11 +91,13 @@ export function PostToc({ headings }: PostTocProps) {
           ? {
               initial: { opacity: 0, y: 12 },
               animate: { opacity: 1, y: 0 },
-              transition: { duration: 0.35, delay: 0.16, ease: 'easeOut' },
+              transition: { duration: 0.35, delay: 0.16, ease: "easeOut" },
             }
           : {})}
       >
-        <p className="mb-5 font-mono text-label uppercase text-text-muted">On this page</p>
+        <p className="mb-5 font-mono text-label uppercase text-text-muted">
+          On this page
+        </p>
         {list}
       </motion.aside>
     </>

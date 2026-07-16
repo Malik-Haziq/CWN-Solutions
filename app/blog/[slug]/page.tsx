@@ -1,19 +1,15 @@
-import type { Metadata } from 'next';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import { notFound } from 'next/navigation';
-import { PostToc } from '@/components/blog/PostToc';
-import { SectionDivider } from '@/components/ui/SectionDivider';
-import { TealDot } from '@/components/ui/TealDot';
-import {
-  getAllPosts,
-  getHeadingsFromMdx,
-  getPostBySlug,
-} from '@/lib/blog';
-import { formatPostDate } from '@/lib/blog-shared';
-import { useMDXComponents } from '@/mdx-components';
+import type { Metadata } from "next";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { notFound } from "next/navigation";
+import { PostToc } from "@/components/blog/PostToc";
+import { SectionDivider } from "@/components/ui/SectionDivider";
+import { TealDot } from "@/components/ui/TealDot";
+import { getAllPosts, getHeadingsFromMdx, getPostBySlug } from "@/lib/blog";
+import { formatPostDate } from "@/lib/blog-shared";
+import { useMDXComponents } from "@/mdx-components";
 
-const agencyName = 'CWN Solutions';
-const siteUrl = 'https://cwnsolutions.com';
+const agencyName = "CWN Solutions";
+const siteUrl = "https://cwnsolutions.com";
 
 type BlogPostPageProps = {
   params: {
@@ -45,7 +41,7 @@ export function generateMetadata({ params }: BlogPostPageProps): Metadata {
     openGraph: {
       title: post.title,
       description: post.description,
-      type: 'article',
+      type: "article",
       url,
     },
   };
@@ -61,21 +57,21 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   const headings = getHeadingsFromMdx(post.content);
   const components = useMDXComponents({});
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    "@context": "https://schema.org",
+    "@type": "Article",
     headline: post.title,
     description: post.description,
     datePublished: post.publishedAt,
     author: {
-      '@type': 'Organization',
+      "@type": "Organization",
       name: agencyName,
       url: siteUrl,
     },
     publisher: {
-      '@type': 'Organization',
+      "@type": "Organization",
       name: agencyName,
       logo: {
-        '@type': 'ImageObject',
+        "@type": "ImageObject",
         url: `${siteUrl}/logo.png`,
       },
     },
@@ -131,7 +127,8 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                 Working on something that needs to be built right?
               </h2>
               <p className="mt-4 font-body text-base leading-7 text-text-secondary">
-                Book a discovery call and get clear on the safest path from idea to launch.
+                Book a discovery call and get clear on the safest path from idea
+                to launch.
               </p>
               <a href="/#contact" className="btn-primary mt-7">
                 Book a Free Call →

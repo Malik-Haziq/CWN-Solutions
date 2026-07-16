@@ -1,5 +1,14 @@
 import type { MDXComponents } from "mdx/types";
 import { SectionDivider } from "@/components/ui/SectionDivider";
+import {
+  AuthorBio,
+  ComparisonTable,
+  DefinitiveAnswer,
+  FaqAccordion,
+  PageBottomCta,
+  ProofPoint,
+  RelatedContent,
+} from "@/components/content";
 import { slugifyHeading } from "@/lib/blog-shared";
 
 function getTextFromChildren(children: React.ReactNode): string {
@@ -78,6 +87,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </ol>
     ),
     li: ({ children }) => <li className="pl-1">{children}</li>,
+    AuthorBio,
+    ComparisonTable,
+    DefinitiveAnswer,
+    FaqAccordion,
+    PageBottomCta,
+    ProofPoint,
+    RelatedContent,
     ...components,
   };
 }
